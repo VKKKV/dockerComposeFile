@@ -1,0 +1,21 @@
+version: '3.1'
+services:
+  nginx:
+    image: nginx:latest
+    container_name: nginx
+    restart: always
+    environment:
+      TZ : 'Asia/Shanghai'
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - /root/nginx/config/nginx.conf:/etc/nginx/nginx.conf
+      - /root/nginx/config/conf.d:/etc/nginx/conf.d
+      - /root/nginx/html:/usr/share/nginx/html
+      - /root/nginx/logs:/var/log/nginx
+      - /root/nginx/ssl:/ssl
+      - /root/nginx/www:/var/www
+      - /root/nginx/cert:/etc/nginx/cert
+      
+
