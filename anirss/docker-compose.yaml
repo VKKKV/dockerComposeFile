@@ -1,0 +1,39 @@
+services:
+  ani-rss:
+    container_name: ani-rss
+    volumes:
+      - ./config:/config
+      - ./downloads:/download  # 下载的存储路径 需要和ani-rss保持一致
+    ports:
+      - 7789:7789
+    environment:
+      - PORT=7789
+      - CONFIG=/config
+      - TZ=Asia/Shanghai
+    restart: always
+    image: wushuo894/ani-rss
+ 
+  qbittorrent:
+    image: nevinee/qbittorrent  
+    container_name: qbittorrent-mikan
+    restart: always
+    tty: true
+    network_mode: bridge
+    hostname: qbitorrent
+    stop_grace_period: 10m
+    volumes:
+      - ./downloads:/download   # 下载的存储路径 需要和ani-rss保持一致
+    tmpfs:
+      - /tmp
+    environment:
+      - QB_USERNAME=admin
+      - QB_PASSWORD=admin
+      - WEBUI_PORT=15768   #qb 的 web 端口
+      - BT_PORT=34567       # BT端口
+      - PUID=0        
+      - PGID=0        
+    ports:
+      - 15768:15768           # qb web 端口映射
+      - 34567:34567      
+      - 34567:34567/udp
+
