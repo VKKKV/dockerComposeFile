@@ -1,0 +1,13 @@
+global:
+  scrape_interval: 15s
+
+scrape_configs:
+  - job_name: 'springboot'
+    metrics_path: '/actuator/prometheus'
+    static_configs:
+      - targets: ['172.17.0.1:8080']  # 监控本地 Java
+
+  - job_name: 'docker'
+    static_configs:
+      - targets: ['172.17.0.1:9323']  # Docker 引擎指标端口
+
