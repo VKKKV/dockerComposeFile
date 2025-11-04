@@ -12,9 +12,9 @@ services:
       - TZ=Asia/Shanghai
     restart: always
     image: wushuo894/ani-rss
- 
+
   qbittorrent:
-    image: nevinee/qbittorrent  
+    image: nevinee/qbittorrent
     container_name: qbittorrent-mikan
     restart: always
     tty: true
@@ -30,10 +30,10 @@ services:
       - QB_PASSWORD=admin
       - WEBUI_PORT=15768   #qb 的 web 端口
       - BT_PORT=34567       # BT端口
-      - PUID=0        
-      - PGID=0        
+      - PUID=0
+      - PGID=0
     ports:
       - 15768:15768           # qb web 端口映射
-      - 34567:34567      
+      - 34567:34567
       - 34567:34567/udp
 
