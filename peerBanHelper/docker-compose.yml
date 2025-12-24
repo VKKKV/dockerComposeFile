@@ -1,6 +1,6 @@
 services:
   peerbanhelper:
-    image: "ghostchu/peerbanhelper:v7.4.14"
+    image: "ghostchu/peerbanhelper:v9.0.10"
     restart: unless-stopped
     container_name: "peerbanhelper"
     volumes:
