@@ -10,30 +10,24 @@ services:
       - PORT=7789
       - CONFIG=/config
     volumes:
-      - ./ani-rss/config:/config
-      - ./downloads:/downloads  # 建议与 qB 的下载路径保持一致
-      - ./Media:/Media # 媒体库挂载路径
+      - ./config:/config
+      - ./downloads:/downloads
+      - ./Media:/Media
     ports:
       - 7789:7789
 
   qBittorrent:
     image: nevinee/qbittorrent
     container_name: qbittorrent-mikan
-    hostname: qbitorrent
+    hostname: qbittorrent
     restart: always
     tty: true
     stop_grace_period: 10m
-    environment:
-      - PUID=0
-      - PGID=0
-      - TZ=Asia/Shanghai
-      - WEBUI_PORT=15768
-      - BT_PORT=34567
-      - QB_USERNAME=admin
-      - QB_PASSWORD=CHANGE-ME
+    env_file:
+      - .env
     volumes:
-      - ./qBittorrent/config:/config
-      - ./downloads:/downloads # 这里的容器内路径必须与 ani-rss 一致，才能实现自动重命名/移动
+      - ./qbit-config:/config
+      - ./downloads:/downloads
       - ./Media:/Media
     ports:
       - 15768:15768

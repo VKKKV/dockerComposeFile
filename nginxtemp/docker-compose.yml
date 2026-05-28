@@ -1,11 +1,10 @@
 services:
   nginx:
     image: nginx:latest
-    container_name: nginx
+    container_name: nginx-temp
     restart: always
     environment:
-      TZ : 'Asia/Shanghai'
+      TZ: 'Asia/Shanghai'
     ports:
       - "80:80"
       - "443:443"
-

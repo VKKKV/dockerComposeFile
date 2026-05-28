@@ -1,0 +1,14 @@
+services:
+  bilisum:
+    image: bilisum:local
+    container_name: bilisum
+    restart: unless-stopped
+    ports:
+      - "3838:3838"
+    volumes:
+      - bilisum-data:/data
+    env_file:
+      - .env
+
+volumes:
+  bilisum-data:
